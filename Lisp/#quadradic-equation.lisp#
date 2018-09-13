@@ -1,0 +1,11 @@
+;;Define the Quadratic formula. it's called quad-roots
+;;
+;; (-b + ((b*b - 4*a*c)^1/2))/2a
+;; (-b - ((b*b - 4*a*c)^1/2))/2a
+
+(defun quad-roots (a b c)
+  "The quadradic formula which finds the roots"
+  (list
+   (/ (+ (* -1 b) (sqrt (- (expt b 2) (* (* 4 a) c)))) (* 2 a))
+   (/ (- (* -1 b) (sqrt (- (expt b 2) (* (* 4 a) c)))) (* 2 a))))
+	   
