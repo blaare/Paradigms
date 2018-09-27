@@ -1,0 +1,28 @@
+;;;;;(sum n m)
+;;;; returns the sum of n and m using recursion and the 1+ and 1- functions, but not
+;;;; the general + function. The arguments n and m are integers, either zero, positive, or negative;
+;;;; if either argument is otherwise, the function returns nil.
+
+(defun sum (n m)
+  "returns the sum of n and m using recursion"
+  (cond
+    ((not(integerp n)) nil)
+    ((not(integerp m)) nil)
+    ((equal m 0) n)
+    ((> 0 m) (sum (1- n) (1+ m)))
+    (t       (sum (1+ n) (1- m)))))
+
+;;;;;(my-replace e1 e2 L)
+;;;; returns the list L with all occurrences of element e1 replaced, at all levels within the
+;;;; list, with the element e2. The replacement should proceed even if the elements are themselves
+;;;; lists; that is , do a deep replace. You do not need to handle the case where any of the
+;;;; arguments are defective.
+
+(defun my-replace (e1 e2 L)
+  "returns the list L with all occurrences of element e1 replaced bythe element e2"
+  (cond ((endp L) nil)
+
+	;
+	((equal(first L) e1) (cons e2 (my-replace e1 e2 (rest L))))
+	(t                   (cons (first L) (my-replace e1 e2 (rest L))))))
+	    
