@@ -21,8 +21,8 @@
 (defun my-replace (e1 e2 L)
   "returns the list L with all occurrences of element e1 replaced bythe element e2"
   (cond ((endp L) nil)
-
-	;
+	;;For single level
 	((equal(first L) e1) (cons e2 (my-replace e1 e2 (rest L))))
+	((listp (first L)) (cons (my-replace e1 e2 (first L)) (my-replace e1 e2 (rest L))))
 	(t                   (cons (first L) (my-replace e1 e2 (rest L))))))
 	    
