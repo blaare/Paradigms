@@ -31,23 +31,26 @@
 	    
 
 
-;;;;;(fibonacci n)
-;;;; Implement this function in the obvious text-book, recursive way.
+;;;;;(fibonacci-tr n)
+;;;; Implement this function in the double-recursion way.
 ;;;; Fibonacci follows the form: 1 1 2 3 5 8 13 21 34 55 89 ...
 
 (defun fibonacci (n)
-  "Returns the nth term in the Fibonacci sequence"
+  "Returns the nth term in the Fibonacci sequence by double recursion"
+   
+
+;;;;;(fibonacci-tr n)
+;;;; Implement this function in the tail-recursive way.
+;;;; Fibonacci follows the form: 1 1 2 3 5 8 13 21 34 55 89 ...
+
+(defun fibonacci-tr(n)
+  "Returns the nth term in the Fibonacci sequence by tail recursion"
   (let(
     (x 0)
-    (y 1)
-    )
-    (inner-fibonacci x y n)))
-
-
-(defun inner-fibonacci(x y n)
-  "Handles the inner fibonacci recursion"
-  
-  (cond
-;; Handle the closing case
-    ((equal n 0) x)
-    (t(inner-fibonacci (+ x y) x (1- n)))))
+    (y 1))
+    (labels (
+	     (inner-fibonacci(x y n)
+	       (cond ((equal n 0) x)
+		     (t(inner-fibonacci(+ x y) x (1- n))))))
+      ;;run funct
+      (inner-fibonacci x y n))))
