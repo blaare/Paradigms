@@ -37,7 +37,7 @@
 
 (defun fibonacci (n)
   "Returns the nth term in the Fibonacci sequence by double recursion"
-   
+   1 )
 
 ;;;;;(fibonacci-tr n)
 ;;;; Implement this function in the tail-recursive way.
