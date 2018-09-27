@@ -20,9 +20,34 @@
 
 (defun my-replace (e1 e2 L)
   "returns the list L with all occurrences of element e1 replaced bythe element e2"
-  (cond ((endp L) nil)
-	;;For single level
-	((equal(first L) e1) (cons e2 (my-replace e1 e2 (rest L))))
-	((listp (first L)) (cons (my-replace e1 e2 (first L)) (my-replace e1 e2 (rest L))))
-	(t                   (cons (first L) (my-replace e1 e2 (rest L))))))
+  (cond
+    ((endp L) nil)
+    ;; For single level
+    ((equal(first L) e1) (cons e2 (my-replace e1 e2 (rest L))))
+    ;; For nested level
+    ((listp (first L))   (cons (my-replace e1 e2 (first L)) (my-replace e1 e2 (rest L))))
+    ;; For all else
+    (t                   (cons (first L) (my-replace e1 e2 (rest L))))))
 	    
+
+
+;;;;;(fibonacci n)
+;;;; Implement this function in the obvious text-book, recursive way.
+;;;; Fibonacci follows the form: 1 1 2 3 5 8 13 21 34 55 89 ...
+
+(defun fibonacci (n)
+  "Returns the nth term in the Fibonacci sequence"
+  (let(
+    (x 0)
+    (y 1)
+    )
+    (inner-fibonacci x y n)))
+
+
+(defun inner-fibonacci(x y n)
+  "Handles the inner fibonacci recursion"
+  
+  (cond
+;; Handle the closing case
+    ((equal n 0) x)
+    (t(inner-fibonacci (+ x y) x (1- n)))))
