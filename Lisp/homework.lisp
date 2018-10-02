@@ -47,12 +47,9 @@
 
 (defun fibonacci-tr(n)
   "Returns the nth term in the Fibonacci sequence by tail recursion"
-  (let(
-    (x 0)
-    (y 1))
-    (labels (
+  (    (labels (
 	     (inner-fibonacci(x y n)
 	       (cond ((equal n 0) x)
 		     (t(inner-fibonacci(+ x y) x (1- n))))))
       ;;run funct
-      (inner-fibonacci x y n))))
+      (inner-fibonacci 0 1 n))))
