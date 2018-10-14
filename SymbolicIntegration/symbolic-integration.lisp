@@ -1,28 +1,4 @@
 ;;;==========================================================================
-;;;INTEGRATION: CORE
-;;;==========================================================================
-(defun integrate (F V &optional lo hi)
-  "Computes the integral of with respect to V"
-  (def-integral (indef-integral F V) lo hi))
-
-(defun indef-integral (F V)
-  "Computes the indefinite integral"
-  (cond ((numberp F) (make-product F V))
-	((variable-p F) (make-product 1/2 (make-power F 2)))
-
-	))
-
-	
-	
-
-(defun def-integral (F lo hi)
-  "Computes the definite integral of F with respect to lo and hi values"
-    (if (and lo hi) F) ;; no values supplied for lo and hi
-    F)                        ;; return the indefinite integral
-                            ;; else return the definite integral
-
-
-;;;==========================================================================
 ;;; SYMBOLS
 (defconstant variable-symbols '(U V W X Y Z))
 (defconstant negative-symbol  '-)
@@ -57,22 +33,22 @@
 ;;; Function negative-p
 ;;  returns t if F is -
 (defun negative-p (F)
-  (eq F negative-symbol))
+  (eq (first F) negative-symbol))
 
 ;;; Function sum-p
 ;;  returns t if the F is +
 (defun sum-p (F)
-  (eq F sum-symbol))
+  (eq (first F) sum-symbol))
 
 ;;; Function product-p
 ;;  returns t if the first element is *
 (defun product-p (F)
-  (eq F product-symbol))
+  (eq (first F) product-symbol))
 
 ;;; Function quotient-p
 ;;  returns t if the first element is /
 (defun quotient-p (F)
-  (eq F quotient-symbol))
+  (eq (first F) quotient-symbol))
 
 ;;;==========================================================================
 ;;; CONSTRUCTORS
@@ -110,3 +86,46 @@
 	;; ther might be other cases you need to consider
 	((and (numberp F) (numberp G)) (expt F G))
 	(t (list exponent-symbol F G))))
+
+;;; Function make-negative
+;;  goal is to turn (- x) into (- (x)) and (- 5) into -5
+(defun make-negative(F G)
+  (cond ((eq 0 F) G)
+	((eq 0 G) 0)
+	;; there might be other cases you need to consider
+	((numberp G) (eval (list negative-symbol G)))
+	(t (list negative-symbol (list G)))))
+
+;;;==========================================================================
+;;;INTEGRATION: CORE
+;;;==========================================================================
+(defun integrate (F V &optional lo hi)
+  "Computes the integral of with respect to V"
+  (def-integral (indef-integral F V) lo hi))
+
+(defun indef-integral (F V)
+  "Computes the indefinite integral"
+  (cond
+    ((numberp F) (make-product F V))
+    ;; Handle x
+    ((variable-p F) (make-product 1/2 (make-power F 2)))
+    ;; Handle f(x) + g(x)
+    ((sum-p F) (make-sum
+		(indef-integral (sum-operand-1 F) V)
+		(indef-integral (sum-operand-2 F)V)))
+    ;; Handle -x
+
+    ((negative-p F) (list
+		     negative-symbol
+		     (indef-integral (negative-operands F) V)))
+    ))
+
+	
+	
+
+(defun def-integral (F lo hi)
+  "Computes the definite integral of F with respect to lo and hi values"
+    (if (and lo hi) F) ;; no values supplied for lo and hi
+    F)                        ;; return the indefinite integral
+                            ;; else return the definite integral
+
