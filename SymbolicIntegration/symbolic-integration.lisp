@@ -144,7 +144,7 @@
 			(indef-integral (subtraction-operand-1 F) V)
 			(indef-integral (subtraction-operand-2 F) V)))
     ;; Handle Negate-p
-    ((negative-p F) (make-negative (indef-integral F V)))
+    ((negative-p F)(make-negative (indef-integral (negative-operand F) V)))
   
     ;; Handle Power-p
     ((power-p F)
