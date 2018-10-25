@@ -1,19 +1,19 @@
 (defun t1()  (integrate '1 'x))
-
+;;incorrect -Add in simplification
 (defun t2()  (integrate '1 'y 1 4))
-
+;;Correct
 (defun t3()  (integrate 'z 'z))
-
+;;Correct
 (defun t4()  (integrate '(+ x 0) 'x))
-
+;;Correct
 (defun t5()  (integrate '(- x) 'x 1 3))
-
+;;Correct
 (defun t6()  (integrate '(- - x) 'x) 1 4)
-
+;;Incorrect --check negatives
 (defun t7()  (integrate '(- x) 'x))
-
+;;Incorrect --check negatives
 (defun t8()  (integrate '(- - x) 'x))
-
+;;Incorrect --check negatives
 (defun t9()  (integrate '(- - - x) 'x))
 
 (defun t10() (integrate '(+ x (- x)) 'x))
