@@ -123,6 +123,11 @@
         ((negative-p F) (negative-operand F))
         (t (list negative-symbol F))))
 
+;;; Function make-log
+;;  goal is to fix 
+(defun make-log(V)
+  (list 'log V))
+
 ;;;==========================================================================
 ;;;INTEGRATION: CORE
 ;;;==========================================================================
@@ -143,7 +148,7 @@
 			(indef-integral (subtraction-operand-2 F) V)))                            
     ((negative-p F)(make-negative (indef-integral (negative-operand F) V))) ;; Handle Negate-p 
     ((power-p F)(cond                                                       ;; Handle Power-p
-       ((equal (power-operand-2 F) -1) (list 'log V)) ;;Handle expt x -1
+       ((equal (power-operand-2 F) -1) (make-log V)) ;;Handle expt x -1
        (t (make-product (make-quotient 1 (1+ (power-operand-2 F)))
 			(make-power (power-operand-1 F) (1+ (power-operand-2 F)))))))
     ))
