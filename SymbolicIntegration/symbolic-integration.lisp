@@ -33,7 +33,13 @@
 ;;; Function negative-p
 ;;  returns t if F is -
 (defun negative-p (F)
-  (eq (first F) negative-symbol))
+  (cond
+    ((endp F) nil)
+    ((and (equal (length F) 2)
+          (equal (negative-operator F) negative-symbol)
+	  (not (equal (negative-operand F) negative-symbol))) t)
+    (t(negative-p (rest F)))))
+    
 
 ;;; Function sum-p
 ;;  returns t if the F is +
@@ -44,9 +50,10 @@
 ;;  returns t if the first of F is - and the length is 3
 (defun subtraction-p(F)
   (and
-   (and (equal (first F) negative-symbol) (equal (length-TR F 0) 3))
-   (and (not (equal (subtraction-operand-1 F) negative-symbol))
-	(not (equal (subtraction-operand-2 F) negative-symbol)))))
+   (equal (length F ) 3)
+   (equal (first F) negative-symbol) 
+   (not (equal (subtraction-operand-1 F) negative-symbol))
+   (not (equal (subtraction-operand-2 F) negative-symbol))))
 
 ;;; Function product-p
 ;;  returns t if the first element is *
@@ -110,8 +117,9 @@
 
 ;;; Function make-negative
 ;;  goal is to turn (- x) into (- (x)) and (- 5) into -5
+;;  also to turn (- - x) into (-(-x))
 (defun make-negative(F)
-  (cond ((negative-p F) (list (negative-operand F)))
+  (cond ((negative-p F) (rest F))
 	(t (cons negative-symbol F))))
 
 ;;;==========================================================================
@@ -124,6 +132,7 @@
 (defun indef-integral (F V)
   "Computes the indefinite integral"
   (cond
+    
     ((numberp F) (make-product F V))
     ;; Handle x
     ((variable-p F) (make-product 1/2 (make-power F 2)))
@@ -135,10 +144,7 @@
 			(indef-integral (subtraction-operand-1 F) V)
 			(indef-integral (subtraction-operand-2 F) V)))
     ;; Handle Negate-p
-    ((negative-p F) (list negative-symbol
-			  (cond
-			    ((negative-p (rest F)) (indef-integral (rest F) V))
-			    (t (indef-integral (negative-operand F) V)))))
+    ((negative-p F) (make-negative (indef-integral F V)))
   
     ;; Handle Power-p
     ((power-p F)
@@ -182,12 +188,5 @@
     (t                   (cons (first L) (my-replace (rest L) val)))
     ))
 
-;;;====================================================================================
-;; Function: length-TR
-;; Called by: (length-TR L 0)
-;; Parameter: L - a list
-;; Parameter: acc - tail recursive accumulator
-(defun length-TR (L acc)
-  "tail recursive length"
-  (cond ((endp L) acc)
-	(t(length-TR (rest L) (1+ acc)))))
+
+
