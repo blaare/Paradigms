@@ -8,7 +8,7 @@
 
 (defun t5()  (integrate '(- x) 'x 1 3))
 
-(defun t6()  (integrate '(- - x) 'x) 1 4)
+(defun t6()  (integrate '(- - x) 'x 1 4))
 
 (defun t7()  (integrate '(- x) 'x))
 

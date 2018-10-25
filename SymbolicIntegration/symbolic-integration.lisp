@@ -15,13 +15,16 @@
 (defun quotient-operator (F) (first F))
 
 ;;; SELECTORS -- OPERANDS
-(defun negative-operand (F)(second F))
-(defun sum-operand-1 (F)(second F))
-(defun sum-operand-2 (F)(third F))
-(defun subtraction-operand-1(F)(second F))
-(defun subtraction-operand-2(F)(third F))
-(defun power-operand-1 (F)(second F))
-(defun power-operand-2 (F)(third F))
+(defun negative-operand      (F)
+  (cond
+    ((equal (length F) 2) (second F))
+    (t (rest F))))
+(defun sum-operand-1         (F) (second F))
+(defun sum-operand-2         (F) (third F))
+(defun subtraction-operand-1 (F) (second F))
+(defun subtraction-operand-2 (F) (third F))
+(defun power-operand-1       (F) (second F))
+(defun power-operand-2       (F) (third F))
 
 
 ;;;==========================================================================
@@ -85,7 +88,7 @@
 	(t (list sum-symbol F G))))             ; return: (+ F G)
 
 (defun make-subtraction (F G)
-  (cond ((equal 0 F) (cons negative-symbol G))
+  (cond ((equal 0 F) (make-negative G))
 	((equal 0 G) F)
 	;; there might be other cases you need to consider
 	((and (numberp F) (numberp G)) (- F G))
@@ -119,8 +122,10 @@
 ;;  goal is to turn (- x) into (- (x)) and (- 5) into -5
 ;;  also to turn (- - x) into (-(-x))
 (defun make-negative(F)
-  (cond ((negative-p F) (rest F))
-	(t (cons negative-symbol F))))
+  (cond ((numberp F) (list negative-symbol F))
+	((variable-p F) (list negative-symbol F))
+        ((negative-p F) (negative-operand F))
+        (t (list negative-symbol F))))
 
 ;;;==========================================================================
 ;;;INTEGRATION: CORE
@@ -128,29 +133,21 @@
 (defun integrate (F V &optional lo hi)
   "Computes the integral of with respect to V"
   (def-integral (indef-integral F V) lo hi))
+  ;(indef-integral F V))
 
 (defun indef-integral (F V)
   "Computes the indefinite integral"
   (cond
-    
-    ((numberp F) (make-product F V))
-    ;; Handle x
-    ((variable-p F) (make-product 1/2 (make-power F 2)))
-    ;; Handle f(x) + g(x)
-    ((sum-p F) (make-sum (indef-integral (sum-operand-1 F) V)
+    ((numberp F) (make-product F V))                                        ;; Handle integers 
+    ((variable-p F) (make-product 1/2 (make-power F 2)))                    ;; Handle X
+    ((sum-p F) (make-sum (indef-integral (sum-operand-1 F) V)               ;; Handle f(x) + g(x)
 			 (indef-integral (sum-operand-2 F) V)))
-    ;; Handle f(x) - g(x)
-    ((subtraction-p F) (make-subtraction
+    ((subtraction-p F) (make-subtraction                                    ;; Handle f(x) - g(x)
 			(indef-integral (subtraction-operand-1 F) V)
-			(indef-integral (subtraction-operand-2 F) V)))
-    ;; Handle Negate-p
-    ((negative-p F)(make-negative (indef-integral (negative-operand F) V)))
-  
-    ;; Handle Power-p
-    ((power-p F)
-     (cond
-       ;;Handle expt x -1
-       ((equal (third F) -1) (list 'log V))
+			(indef-integral (subtraction-operand-2 F) V)))                            
+    ((negative-p F)(make-negative (indef-integral (negative-operand F) V))) ;; Handle Negate-p 
+    ((power-p F)(cond                                                       ;; Handle Power-p
+       ((equal (third F) -1) (list 'log V)) ;;Handle expt x -1
        (t (make-product (make-quotient 1 (1+ (power-operand-1 F)))
 			(make-power V (1+ (power-operand-2 F)))))))
     ))
