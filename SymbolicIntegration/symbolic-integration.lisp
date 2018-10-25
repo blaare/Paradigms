@@ -83,28 +83,25 @@
 (defun make-sum (F G)
   (cond ((eq 0 F) G)                            ; G+0=G
 	((eq 0 G) F)                            ; F+0=F
-	;; there might be other cases you need to consider
+	((equal (make-negative F) G) 0)
 	((and (numberp F) (numberp G)) (+ F G)) ; if they're numbers, add them
 	(t (list sum-symbol F G))))             ; return: (+ F G)
 
 (defun make-subtraction (F G)
   (cond ((equal 0 F) (make-negative G))
 	((equal 0 G) F)
-	;; there might be other cases you need to consider
 	((and (numberp F) (numberp G)) (- F G))
 	(t (list negative-symbol F G))))
 
 (defun make-product (F G)
   (cond ((eq 0 F) 0)                            ; F*0=0
 	((eq 0 G) 0)                            ; G*0=0
-	;; there might be other cases you need to consider
 	((and (numberp F) (numberp G)) (* F G)) ; if they're numbers, multiply them
 	(t (list product-symbol F G))))         ; return: (* F G)
 
 (defun make-quotient(F G)
   (cond ((eq 0 F) 0)
 	((eq 0 G) nil)
-	;; there might be other cases you need to consider
 	((and (numberp F) (numberp G)) (/ F G))
 	(t (list quotient-symbol F G))))
 
@@ -113,7 +110,6 @@
 (defun make-power(F G)
   (cond ((eq 0 F) 0)
 	((eq 0 G) 1)
-	;; ther might be other cases you need to consider
 	((and (numberp F) (numberp G)) (expt F G))
 	(t (list exponent-symbol F G))))
 
@@ -147,9 +143,9 @@
 			(indef-integral (subtraction-operand-2 F) V)))                            
     ((negative-p F)(make-negative (indef-integral (negative-operand F) V))) ;; Handle Negate-p 
     ((power-p F)(cond                                                       ;; Handle Power-p
-       ((equal (third F) -1) (list 'log V)) ;;Handle expt x -1
-       (t (make-product (make-quotient 1 (1+ (power-operand-1 F)))
-			(make-power V (1+ (power-operand-2 F)))))))
+       ((equal (power-operand-2 F) -1) (list 'log V)) ;;Handle expt x -1
+       (t (make-product (make-quotient 1 (1+ (power-operand-2 F)))
+			(make-power (power-operand-1 F) (1+ (power-operand-2 F)))))))
     ))
 
 	
