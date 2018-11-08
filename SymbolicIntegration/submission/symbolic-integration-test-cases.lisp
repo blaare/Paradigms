@@ -1,3 +1,10 @@
+;;; Name:        Timothy Wilson
+;;; Class:       CSC 345
+;;; Assignment:  Project 1
+;;; Description: To contain the test data provided by Dr. Wyatt.
+
+;;;==========================================================================
+
 (defun t1()  (integrate '1 'x))
 
 (defun t2()  (integrate '1 'y 1 4))

@@ -1,0 +1,79 @@
+; SLIME 2.20
+; Python version 1.1, VM version Intel x86/sse2 on 2018-10-29 17:23:23.
+; Compiling: /home/twilson/Documents/Paradigms/SymbolicIntegration/symbolic-integration.lisp 2018-10-25 17:29:43
+
+
+; /home/twilson/Documents/Paradigms/SymbolicIntegration/symbolic-integration.sse2f written.
+; Compilation finished in 0:00:00.
+; Loading #P"/home/twilson/Documents/Paradigms/SymbolicIntegration/symbolic-integration.sse2f".
+
+CL-USER> (integrate '(0) 'X)
+NIL
+CL-USER> (integrate '(1) 'X)
+NIL
+CL-USER> (integrate '1 'X)
+(* 1 X)
+CL-USER> (integrate '0 'X)
+0
+
+; Python version 1.1, VM version Intel x86/sse2 on 2018-10-29 21:44:38.
+; Compiling: /home/twilson/Documents/Paradigms/SymbolicIntegration/symbolic-integration.lisp 2018-10-25 17:29:43
+
+
+; /home/twilson/Documents/Paradigms/SymbolicIntegration/symbolic-integration.sse2f written.
+; Compilation finished in 0:00:00.
+; Loading #P"/home/twilson/Documents/Paradigms/SymbolicIntegration/symbolic-integration.sse2f".
+
+; Python version 1.1, VM version Intel x86/sse2 on 2018-10-29 21:44:45.
+; Compiling: /home/twilson/Documents/Paradigms/SymbolicIntegration/symbolic-integration-test-cases.lisp 2018-10-25 15:52:26
+
+
+; /home/twilson/Documents/Paradigms/SymbolicIntegration/symbolic-integration-test-cases.sse2f written.
+; Compilation finished in 0:00:00.
+; Loading #P"/home/twilson/Documents/Paradigms/SymbolicIntegration/symbolic-integration-test-cases.sse2f".
+CL-USER> (t1)
+(* 1 X)
+CL-USER> (integrate '1 'x)
+(* 1 X)
+CL-USER> (integrate '1 'y 1 4)
+3
+CL-USER> (integrate 'z 'z)
+(* 1/2 (EXPT Z 2))
+CL-USER> (integrate '(+ x 0) 'x)
+(* 1/2 (EXPT X 2))
+CL-USER> (integrate '(- x) 'x 1 3)
+-4
+CL-USER> (integrate  '(- - x) 'x 1 4)
+15/2
+CL-USER> (integrate '(- x) 'x)
+(- (* 1/2 (EXPT X 2)))
+CL-USER> (integrate '(- - x) 'x)
+(* 1/2 (EXPT X 2))
+CL-USER> (integrate '(- - - x) 'x)
+(- (* 1/2 (EXPT X 2)))
+CL-USER> (integrate '(+ x (- x)) 'x)
+0
+CL-USER> (integrate '(- (+ (- - x) x)) 'x 1 4)
+-15
+CL-USER> (integrate '(+ (+ (- - x) (+ x 3)) 2) 'x 2 6)
+52
+CL-USER> (integrate '(- x (expt x 3)) 'x)
+(- (* 1/2 (EXPT X 2)) (* 1/4 (EXPT X 4)))
+CL-USER> (integrate '(- x (expt x 3)) 'x 2 5)
+-567/4
+CL-USER> (integrate '(+ (+ x (- - - x)) (expt x 3) 'x))
+; Evaluation aborted on #<KERNEL:SIMPLE-PROGRAM-ERROR {585007A5}>.
+CL-USER> (integrate '(+ (+ x (- - - x)) (expt x 3)) 'x)
+(* 1/4 (EXPT X 4))
+CL-USER> (integrate '(+ (- x (- x)) (expt x 3)) 'x 2 3)
+85/4
+CL-USER> (integrate '(expt x -1) 'x)
+(LOG X)
+CL-USER> (integrate '(expt x -1) 'x 3 45)
+2.7080503
+CL-USER> (integrate '(+ (+ x (- 5 x)) (expt x -1)) 'x)
+(+ (+ (* 1/2 (EXPT X 2)) (- (* 5 X) (* 1/2 (EXPT X 2)))) (LOG X))
+CL-USER> (integrate '(+ (+ x (- 5 x)) (expt x -1)) 'x 5 217)
+1063.7704
+CL-USER> (integrate '(- (* 7 x)) 'x)
+

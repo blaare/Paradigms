@@ -1,0 +1,14 @@
+%%% Name:		Timothy Wilson
+%%% Class:		CSC 345
+%%% Assignment:		Project 1
+%%% Description:	This file contains the Bug Report for the definite/indefinite integrals.
+
+%%%---------------------------------------------------------------------------------------------
+Current Status of Bugs:
+
+1. None of the provided test cases will error.
+2. There are no known bugs inside the scope of this project.
+3. Complex Integrals (outside the scope of this project) do not work.
+	a. Any trigonometric functions
+        b. Non-simplified algebraic functions.
+	c. Multivariable Integrals/ Integration by parts
