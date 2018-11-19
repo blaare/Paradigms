@@ -1,0 +1,71 @@
+%%% -------------------------------------------------------T1
+- preOrder t1;
+val it = [1,2,3,4,5,6,7] : int list
+- inOrder t1;
+val it = [3,2,4,1,6,5,7] : int list
+- postOrder t1;
+val it = [3,4,2,6,7,5,1] : int list
+- displayTree(t1,printInt);
+1
+  2
+    3
+    4
+  5
+    6
+    7
+val it = () : unit
+
+%%% -------------------------------------------------------T2
+- preOrder t2;
+val it = [A,B,D,E,C,F,G] : X list
+- inOrder t2;
+val it = [D,B,E,A,F,C,G] : X list
+- postOrder t2;
+val it = [D,E,B,F,G,C,A] : X list
+- displayTree(t2,printX);
+A
+  B
+    D
+    E
+  C
+    F
+    G
+val it = () : unit
+%%% -------------------------------------------------------T3
+- preOrder t3;
+val it = [1.22,2.33,3.44] : real list
+- inOrder t3;
+val it = [2.33,1.22,3.44] : real list
+- postOrder t3;
+val it = [2.33,3.44,1.22] : real list
+- displayTree(t3, printReal);
+1.22
+  2.33
+  3.44
+val it = () : unit
+%%% -------------------------------------------------------T4
+- preOrder t4;
+val it = ["A","B","C","E","D","F","G","H","I","J","K","L","M"] : string list
+- inOrder t4;
+val it = ["E","C","B","F","D","H","G","A","J","L","K","M","I"] : string list
+- postOrder t4;
+val it = ["E","C","F","H","G","D","B","L","M","K","J","I","A"] : string list
+- displayTree(t4, print);
+A
+  B
+    C
+      E
+      -
+    D
+      F
+      G
+        H
+        -
+  I
+    J
+      -
+      K
+        L
+        M
+    -
+val it = () : unit

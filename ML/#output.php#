@@ -1,0 +1,284 @@
+Standard ML of New Jersey v110.79 [built: Tue Aug  8 23:21:20 2017]
+- 
+[opening /home/twilson/Documents/Paradigms/ML/homework3.ml]
+val flip = fn : 'a list -> 'a list
+val deleteIth = fn : 'a list * int -> 'a list
+/home/twilson/Documents/Paradigms/ML/homework3.ml:55.33 Warning: calling polyEqual
+val charInList = fn : ''a * ''a list -> bool
+val isVowel = fn : char -> bool
+val piglatinizeHelper = fn : char list -> char list
+[autoloading]
+[library $SMLNJ-BASIS/basis.cm is stable]
+[library $SMLNJ-BASIS/(basis.cm):basis-common.cm is stable]
+[autoloading done]
+val piglatinize = fn : string -> string
+val it = () : unit
+- 
+[opening /home/twilson/Documents/Paradigms/ML/homework3.ml]
+val flip = fn : 'a list -> 'a list
+val deleteIth = fn : 'a list * int -> 'a list
+/home/twilson/Documents/Paradigms/ML/homework3.ml:55.33 Warning: calling polyEqual
+val charInList = fn : ''a * ''a list -> bool
+val isVowel = fn : char -> bool
+val piglatinizeHelper = fn : char list -> char list
+val piglatinize = fn : string -> string
+val it = () : unit
+- 
+[opening /home/twilson/Documents/Paradigms/ML/homework3.ml]
+val flip = fn : 'a list -> 'a list
+val deleteIth = fn : 'a list * int -> 'a list
+val charInList = fn : char * char list -> bool
+val isVowel = fn : char -> bool
+val piglatinizeHelper = fn : char list -> char list
+val piglatinize = fn : string -> string
+val it = () : unit
+- flip[1, 2, 3, 4, 5, 6]
+= ;
+val it = [2,1,4,3,6,5] : int list
+- flip[1, 2, 3, 4, 5, 6];
+val it = [2,1,4,3,6,5] : int list
+- flip[1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
+val it = [2.0,1.0,4.0,3.0,6.0,5.0] : real list
+- deleteIth([1,2,3,4,5,6],3);
+val it = [1,2,4,5,6] : int list
+- 
+              - 
+- = ;
+stdIn:10.15 Error: expression or pattern begins with infix identifier "-"
+- deleteIth([1,2,3,4,5,6,7],7);
+val it = [1,2,3,4,5,6] : int list
+- piglatinize "able";
+val it = "ableyay" : string
+- it = "ipestray : string
+= piglatinize "stripe";
+stdIn:13.6-13.24 Error: unclosed string
+-  piglatinize "stripe";
+val it = "ipestray" : string
+- flip["abc","def","ghi","jkl","mno","pqr","stu","vwx","yz"];
+val it = ["def","abc","jkl","ghi","pqr","mno","vwx","stu","yz"] : string list
+- flip[#"i", #"h",#" ",#"r",#"d", #" ", #".", #"y", #"W", #"t",#"a", #"t"];
+val it = [#"h",#"i",#"r",#" ",#" ",#"d",#"y",#".",#"t",#"W",#"t",#"a"]
+  : char list
+- flip[#"i", #"h",#"d",#" ",#".", #"r", #"W", #" ", #"a", #"y",#"t", #"t"];
+val it = [#"h",#"i",#" ",#"d",#"r",#".",#" ",#"W",#"y",#"a",#"t",#"t"]
+  : char list
+- flip["Hello World"];
+val it = ["Hello World"] : string list
+- flip[];
+stdIn:19.1-19.7 Warning: type vars not generalized because of
+   value restriction are instantiated to dummy types (X1,X2,...)
+val it = [] : ?.X1 list
+- flip nil;
+stdIn:20.1-20.9 Warning: type vars not generalized because of
+   value restriction are instantiated to dummy types (X1,X2,...)
+val it = [] : ?.X1 list
+- flip [];
+stdIn:21.1-21.8 Warning: type vars not generalized because of
+   value restriction are instantiated to dummy types (X1,X2,...)
+val it = [] : ?.X1 list
+- flip (nil)
+= ;
+stdIn:22.1-22.11 Warning: type vars not generalized because of
+   value restriction are instantiated to dummy types (X1,X2,...)
+val it = [] : ?.X1 list
+- flip "";
+stdIn:24.1-24.8 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: 'Z list
+  operand:         string
+  in expression:
+    flip ""
+- deleteIth([1],2);
+val it = [1] : int list
+- deleteIth([1], -1);
+stdIn:25.16 Error: expression or pattern begins with infix identifier "-"
+stdIn:25.10-25.19 Error: operator and operand don't agree [overload conflict]
+  operator domain: [- ty] * [- ty]
+  operand:         [int ty]
+  in expression:
+    - 1
+- deleteIth([1], ~1);
+val it = [1] : int list
+- deleteIth([1], 0);
+val it = [1] : int list
+- deleteIth(["don't
+=];
+stdIn:27.12-27.18 Error: unclosed string
+- ;
+- deleteIth(["don't", "continue,", "give", "up"], 2);
+val it = ["don't","give","up"] : string list
+- deleteIth([], 2);
+stdIn:30.1-30.17 Warning: type vars not generalized because of
+   value restriction are instantiated to dummy types (X1,X2,...)
+val it = [] : ?.X1 list
+- piglatinize "timothy";
+val it = "imothytay" : string
+- piglatinize "sandwich";
+val it = "andwichsay" : string
+- piglatinize "apple";
+val it = "appleyay" : string
+- 
+[opening /tmp/emacs-region1884eNz]
+val isVowel = fn : char -> bool
+val it = () : unit
+- 
+[opening /tmp/emacs-region1884XQo]
+/tmp/emacs-region1884XQo:2.29 Warning: calling polyEqual
+val member = fn : ''a * ''a list -> bool
+val it = () : unit
+- 
+[opening /tmp/emacs-region1884kau]
+/tmp/emacs-region1884kau:2.25 Warning: calling polyEqual
+val member = fn : ''a * ''a list -> bool
+val it = () : unit
+- 
+[opening /home/twilson/Documents/Paradigms/ML/homework3.ml]
+val flip = fn : 'a list -> 'a list
+val deleteIth = fn : 'a list * int -> 'a list
+/home/twilson/Documents/Paradigms/ML/homework3.ml:61.25 Warning: calling polyEqual
+val member = fn : ''a * ''a list -> bool
+val isVowel = fn : char -> bool
+val piglatinizeHelper = fn : char list -> char list
+val piglatinize = fn : string -> string
+val it = () : unit
+- member(#"a", [#"a", #"b"]);
+val it = true : bool
+- 
+[opening /home/twilson/Documents/Paradigms/ML/homework3.ml]
+val flip = fn : 'a list -> 'a list
+val deleteIth = fn : 'a list * int -> 'a list
+/home/twilson/Documents/Paradigms/ML/homework3.ml:61.25 Warning: calling polyEqual
+val member = fn : ''a * ''a list -> bool
+val isVowel = fn : char -> bool
+val piglatinizeHelper = fn : char list -> char list
+val piglatinize = fn : string -> string
+val it = () : unit
+- isVowel(#"b");
+val it = false : bool
+- isVowel(#"a");
+val it = true : bool
+- 
+[opening /tmp/emacs-region1884xk0]
+val flip = fn : 'a list -> 'a list
+val deleteIth = fn : 'a list * int -> 'a list
+/tmp/emacs-region1884xk0:61.25 Warning: calling polyEqual
+val member = fn : ''a * ''a list -> bool
+val isVowel = fn : char -> bool
+/tmp/emacs-region1884xk0:86.32-86.48 Error: operator and operand don't agree [tycon mismatch]
+  operator domain: bool * bool
+  operand:         bool * char list
+  in expression:
+    isVowel x = x :: xs
+/tmp/emacs-region1884xk0:86.32-86.81 Error: operand of orelse is not of type bool [tycon mismatch]
+  operand: 'Z list
+  in expression:
+    (isVowel x = x :: xs) orelse (piglatinizeHelper (xs @ x :: nil))
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+[opening /tmp/emacs-region1884juD]
+val flip = fn : 'a list -> 'a list
+val deleteIth = fn : 'a list * int -> 'a list
+/tmp/emacs-region1884juD:61.25 Warning: calling polyEqual
+val member = fn : ''a * ''a list -> bool
+val isVowel = fn : char -> bool
+val piglatinizeHelper = fn : char list -> char list
+val piglatinize = fn : string -> string
+val it = () : unit
+- 
+[opening /tmp/emacs-region1884w4J]
+/tmp/emacs-region1884w4J:1.14-1.16 Error: character constant not length 1
+
+uncaught exception Compile [Compile: "syntax error"]
+  raised at: ../compiler/Parse/main/smlfile.sml:15.24-15.46
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+[opening /tmp/emacs-region18849CQ]
+/tmp/emacs-region18849CQ:2.25 Error: unbound variable or constructor: c
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+[opening /tmp/emacs-region1884KNW]
+val firstIsVowel = fn : char list -> bool
+val it = () : unit
+- firstIsVowel(explode("hello"));
+val it = false : bool
+- firstIsVowel(explode("alpha"));
+val it = true : bool
+- test as explode("test");
+stdIn:46.6-46.17 Error: syntax error: deleting  AS ID LPAREN
+- 
+[opening /home/twilson/Documents/Paradigms/ML/homework3.ml]
+val flip = fn : 'a list -> 'a list
+val deleteIth = fn : 'a list * int -> 'a list
+/home/twilson/Documents/Paradigms/ML/homework3.ml:61.25 Warning: calling polyEqual
+val member = fn : ''a * ''a list -> bool
+val isVowel = fn : char -> bool
+val piglatinizer = fn : char list -> char list
+/home/twilson/Documents/Paradigms/ML/homework3.ml:95.5-97.74 Error: right-hand-side of clause doesn't agree with function result type [tycon mismatch]
+  expression:  string
+  result type:  'Z list
+  in declaration:
+    piglatinizeController =
+      (fn nil => nil
+        | :: (<pat>,<pat>) =>
+            if isVowel <exp> then <exp> ^ <exp> else <exp> ^ <exp>)
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- piglatinizer([#"s",#"t",#"r",#"i",#"p",#"e"]);
+val it = [#"i",#"p",#"e",#"s",#"t",#"r"] : char list
+- 
+[opening /tmp/emacs-region1884xro]
+/tmp/emacs-region1884xro:1.6-3.74 Error: right-hand-side of clause doesn't agree with function result type [tycon mismatch]
+  expression:  string
+  result type:  'Z list
+  in declaration:
+    piglatinizeController =
+      (fn nil => nil
+        | :: (<pat>,<pat>) =>
+            if isVowel <exp> then <exp> ^ <exp> else <exp> ^ <exp>)
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+[opening /tmp/emacs-region1884-1u]
+/tmp/emacs-region1884-1u:1.6-3.86 Error: right-hand-side of clause doesn't agree with function result type [tycon mismatch]
+  expression:  string
+  result type:  'Z list
+  in declaration:
+    piglatinizeController =
+      (fn nil => nil
+        | :: (<pat>,<pat>) =>
+            if isVowel <exp> then <exp> ^ <exp> else <exp> ^ <exp>)
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 
+[opening /tmp/emacs-region1884LA1]
+/tmp/emacs-region1884LA1:1.6-2.103 Error: right-hand-side of clause doesn't agree with function result type [tycon mismatch]
+  expression:  string
+  result type:  'Z list
+  in declaration:
+    piglatinizeController =
+      (fn nil => nil
+        | :: (<pat>,<pat>) =>
+            if isVowel <exp> then implode <exp> else implode <exp>)
+
+uncaught exception Error
+  raised at: ../compiler/TopLevel/interact/evalloop.sml:66.19-66.27
+             ../compiler/TopLevel/interact/evalloop.sml:44.55
+             ../compiler/TopLevel/interact/evalloop.sml:292.17-292.20
+- 

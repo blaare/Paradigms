@@ -1,0 +1,29 @@
+datatype X = A | B | C | D | E | F | G | H;
+
+datatype 'a BT = empty | bTree of 'a * ('a BT) * ('a BT);
+
+fun Preorder = "preOrder";
+
+fun Inorder = "inOrder";
+
+fun Postorder = "postOrder";
+
+fun printreal = "printReal";
+
+fun printint = "printint";
+
+fun printX = "printX";
+
+(* indentLevel *)
+
+fun tab = "tab";
+
+fun displaynode = "displaynode";
+
+fun dash = "dash";
+
+fun displaytreeindent = "displaytreeindent";
+
+fun Displaytree = "Displaytree";
+
+

@@ -1,0 +1,15 @@
+- preOrder t1;
+val it = [1,2,3,4,5,6,7] : int list
+- inOrder t1;
+val it = [3,2,4,1,6,5,7] : int list
+- postOrder t1;
+val it = [3,4,2,6,7,5,1] : int list
+- displayTree(t1,printInt);
+1
+  2
+    3
+    4
+  5
+    6
+    7
+val it = () : unit
